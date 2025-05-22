@@ -14,11 +14,11 @@ const player: RpgPlayerHooks = {
         if (player.getVariable('AFTER_INTRO')) {
             return
         }
-        await player.showText('Welcome to the start of RPGJS. Short presentation of the structure:')
-        await player.showText('1. Open the map src/modules/main/server/maps/tmx/samplemap.tmx with Tiled Map Editor !')
-        await player.showText('2. All the modules are in src/modules/index.ts, it is a suite of systems to make a complete set. Remove modules or add some!')
-        await player.showText('3. The global configuration is done in src/config')
-        await player.showText('And, please, support the project on github https://github.com/RSamaium/RPG-JS ! :)')
+        await player.showText('勇者您好，歡迎來到我的世界')
+        await player.showText('這個世界需要您來拯救')
+        await player.showText('但世界剛被破壞在復原中')
+        await player.showText('很快世界就會恢復')
+        await player.showText('耐心稍等，很快需要您的幫助')
         player.setVariable('AFTER_INTRO', true)
     }
 }
