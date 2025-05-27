@@ -16,8 +16,37 @@
 <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
 
 <body>
+
+  <body>
     <div id="rpg"></div>
-    
+
+    <!-- ✅ 玩家輸入名字用的輸入框（預設隱藏） -->
+    <input id="nameInput"
+           placeholder="輸入你的名字"
+           style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); z-index:1000; font-size:20px; padding:10px;">
+
+    <!-- ✅ 前端腳本，用來接收伺服器的 callClient 並顯示輸入框 -->
+    <script>
+        const socket = window.RPGJS_CLI_SOCKET
+
+        socket.on('ask-name', () => {
+            const input = document.getElementById('nameInput')
+            input.value = ''
+            input.style.display = 'block'
+            input.focus()
+
+            input.onkeydown = function (e) {
+                if (e.key === 'Enter') {
+                    const name = input.value.trim()
+                    if (name) {
+                        socket.emit('name-entered', name)
+                    }
+                    input.style.display = 'none'
+                }
+            }
+        })
+    </script>
+
     <style>
         body,
         html {
@@ -35,7 +64,6 @@
 
         #rpg {
             position: relative;
-            
         }
 
         @media (min-width: 800px) {
@@ -55,6 +83,5 @@
             }
         }
     </style>
-</body>
-
+  </body>
 </html>
