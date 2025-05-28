@@ -10,31 +10,32 @@ import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 export default class NameInputEvent extends RpgEvent {
     onInit() {
         this.setGraphic('female')
-        // 設定 NPC 圖像
     }
 
     async onAction(player: RpgPlayer) {
-        // 玩家點擊 NPC 時觸發
+        // 避免重複命名
+        if (player.getVariable('named')) {
+            await player.showText(`你已經叫做 ${player.name} 囉`, { talkWith: this })
+            return
+        }
+
         await player.showText('你好，請輸入你的名字：', {
             talkWith: this
         })
 
-        const name = await player.showInput()
-        // 顯示輸入框，等待玩家輸入文字
+        // 叫前端顯示輸入框
+        player.callClient('ask-name')
 
-        if (name && name.trim().length > 0) {
-            player.name = name
-            // 設定玩家的名稱
-            player.setComponentsTop(Components.text('{name}'))
-            // 在玩家頭上顯示新名稱
-
-            await player.showText(`你的名字是：${name}，記住囉！`, {
-                talkWith: this
-            })
-        } else {
-            await player.showText('你沒有輸入名字喔！', {
-                talkWith: this
-            })
-        }
+        // 等待前端輸入後送回 name
+        player.once('name-entered', async (name: string) => {
+            if (name && name.trim().length > 0) {
+                player.name = name
+                player.setComponentsTop(Components.text('{name}'))
+                player.setVariable('named', true) // 記錄已命名
+                await player.showText(`你的名字是 ${name}！`, { talkWith: this })
+            } else {
+                await player.showText('你沒有輸入名字喔！', { talkWith: this })
+            }
+        })
     }
 }
