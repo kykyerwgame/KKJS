@@ -1,3 +1,6 @@
 [build]
-  publish = "dist/standalone"
+  # 部署時 Netlify 執行的指令，這裡會執行 rpgjs build（產生 dist 資料夾）
   command = "npm run build"
+
+  # 指定部署目錄，也就是建構完成後的檔案在哪裡
+  publish = "dist/standalone"
