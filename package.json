@@ -1,25 +1,39 @@
 {
+    // 專案名稱
     "name": "my-game",
+
+    // 專案的 NPM 指令（可透過 `npm run 指令` 使用）
     "scripts": {
+        // 建構（打包）遊戲，用於產生部署用的檔案
         "build": "rpgjs build",
+
+        // 啟動開發模式（有自動重載），適合開發時使用
         "dev": "rpgjs dev",
+
+        // 執行已建構好的遊戲伺服器（需先執行 build）
         "start": "node dist/server/main.mjs"
     },
+
+    // 指定 Node.js 的版本需求
     "engines": {
         "node": ">=14"
     },
+
+    // 運行時所需的套件（專案運作必須安裝的）
     "dependencies": {
-        "@rpgjs/client": "4.3.0",
-        "@rpgjs/default-gui": "^4.3.0",
-        "@rpgjs/gamepad": "^4.3.0",
-        "@rpgjs/mobile-gui": "^4.3.0",
-        "@rpgjs/server": "4.3.0",
-        "@rpgjs/standalone": "4.3.0",
-        "@rpgjs/types": "4.0.5",
-        "socket.io-client": "4.7.4"
+        "@rpgjs/client": "4.3.0",          // RPGJS 的前端用戶端核心
+        "@rpgjs/default-gui": "^4.3.0",    // RPGJS 的預設 UI 元件（訊息框、狀態欄等）
+        "@rpgjs/gamepad": "^4.3.0",        // 支援手把操作的模組
+        "@rpgjs/mobile-gui": "^4.3.0",     // 行動裝置上的 UI 支援（觸控操作）
+        "@rpgjs/server": "4.3.0",          // RPGJS 的伺服器核心（遊戲邏輯處理）
+        "@rpgjs/standalone": "4.3.0",      // 獨立版本（整合 client/server 的模組）
+        "@rpgjs/types": "4.0.5",           // RPGJS 的 TypeScript 型別定義
+        "socket.io-client": "4.7.4"        // 前端 Socket.io 套件，用來和伺服器即時通訊
     },
+
+    // 僅在開發期間需要的套件
     "devDependencies": {
-        "@rpgjs/compiler": "4.3.0",
-        "typescript": "5.3.3"
+        "@rpgjs/compiler": "4.3.0",        // RPGJS 的建構工具，用來打包程式
+        "typescript": "5.3.3"              // TypeScript 編譯器（如果使用 TS 開發）
     }
 }
