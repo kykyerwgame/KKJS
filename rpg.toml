@@ -5,6 +5,7 @@ name = 'My Game'
 # 指定專案中要載入的模組路徑或套件
 modules = [
     './main',                # 專案自訂的主模組，通常包含地圖、事件、角色邏輯等
+    '@rpgjs/chat',
     '@rpgjs/mobile-gui',     # 提供行動裝置用的使用者介面（按鈕、方向鍵等）
     '@rpgjs/default-gui',    # RPGJS 預設的 UI 模組（如狀態欄、訊息框）
     '@rpgjs/gamepad'         # 支援手把操作（gamepad controls）
