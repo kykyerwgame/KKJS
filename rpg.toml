@@ -1,13 +1,17 @@
+# 遊戲名稱
 name = 'My Game'
 
+# 模組（modules）：
+# 指定專案中要載入的模組路徑或套件
 modules = [
-    './main',
-    '@rpgjs/mobile-gui',
-    '@rpgjs/default-gui',
-    '@rpgjs/gamepad'
+    './main',                # 專案自訂的主模組，通常包含地圖、事件、角色邏輯等
+    '@rpgjs/mobile-gui',     # 提供行動裝置用的使用者介面（按鈕、方向鍵等）
+    '@rpgjs/default-gui',    # RPGJS 預設的 UI 模組（如狀態欄、訊息框）
+    '@rpgjs/gamepad'         # 支援手把操作（gamepad controls）
 ]
 
+# 遊戲啟動設定
 [start]
-    map = 'simplemap'
-    graphic = 'hero'
-    hitbox = [16, 16]
+    map = 'simplemap'        # 玩家起始地圖名稱，需與專案中的地圖檔案一致
+    graphic = 'hero'         # 玩家角色的初始圖像名稱（角色圖必須已定義）
+    hitbox = [16, 16]        # 玩家角色的碰撞箱尺寸（寬度, 高度），單位為像素
