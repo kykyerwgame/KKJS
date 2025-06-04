@@ -29,6 +29,7 @@
         "@rpgjs/standalone": "4.3.0",      // 獨立版本（整合 client/server 的模組）
         "@rpgjs/types": "4.0.5",           // RPGJS 的 TypeScript 型別定義
         "socket.io-client": "4.7.4"        // 前端 Socket.io 套件，用來和伺服器即時通訊
+        "@rpgjs/chat": "^4.3.0"
     },
 
     // 僅在開發期間需要的套件
